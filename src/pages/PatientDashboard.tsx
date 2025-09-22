@@ -6,9 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import {
-  Menu, Plus, Clock, AlertTriangle, Heart, Thermometer, Activity, User, Camera, Edit, Phone, MapPin, Pill, Trash, ChevronDown, ChevronUp
-} from "lucide-react";
+import { Menu, Plus, Clock, AlertTriangle, Heart, Thermometer, Activity, User, Camera, Edit, Phone, MapPin, Pill, Trash, ChevronDown, ChevronUp, Calendar } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Sidebar from "@/components/Sidebar";
@@ -700,37 +698,81 @@ const PatientDashboard = () => {
         return renderSymptomsContent();
       case "ai-helper":
         return <EnhancedAIChat />;
+      
       case "profile":
         return (
           <div className="space-y-4 pb-[80px]">
-            {/* profile content unchanged */}
             <Card>
               <CardContent className="p-0">
                 <div className="relative h-32 rounded-t-lg overflow-hidden">
                   <img
                     src={familyProfile}
-                    alt="Family Profile"
+                    alt="Profile Cover"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="p-6 -mt-8 relative">
-                  <div className="w-16 h-16 bg-teal-600 rounded-full flex items-center justify-center mb-4 border-4 border-stone-100">
-                    <User className="h-8 w-8 text-white" />
+                  <div className="w-20 h-20 bg-teal-600 rounded-full flex items-center justify-center mb-4 border-4 border-stone-100">
+                    <User className="h-10 w-10 text-white" />
                   </div>
-                  <h2 className="text-xl font-bold mb-1">Raj Kumar Sharma</h2>
-                  <p className="text-stone-400">Age: 68 • Patient ID: #12345</p>
-                  <Button size="sm" className="mt-3">
-                    <Edit className="h-4 w-4 mr-2" />
-                    {t('editProfile')}
-                  </Button>
+                  <h2 className="text-2xl font-bold mb-1">Raj Kumar Sharma</h2>
+                  <p className="text-stone-500 text-base mb-4">Age: 68 • Patient ID: #12345</p>
+
+                  <div className="space-y-3 text-stone-700 text-base">
+                    <div className="flex items-center gap-3">
+                      <Phone className="h-5 w-5 text-teal-600" />
+                      <span>+91 98765 43210</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <MapPin className="h-5 w-5 text-teal-600" />
+                      <span>New Delhi, India</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Calendar className="h-5 w-5 text-teal-600" />
+                      <span>Next Appointment: 25th Sept, 2025</span>
+                    </div>
+                  </div>
+
+                  <div className="mt-5 flex flex-col sm:flex-row gap-3">
+                    <Button size="sm" className="bg-teal-600 text-white flex items-center gap-2">
+                      <Edit className="h-4 w-4" />
+                      {t('editProfile')}
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => {
+                        toast({
+                          title: 'Contacting caregiver',
+                          description: 'Calling registered caregiver...'
+                        });
+                      }}
+                      className="flex items-center gap-2"
+                    >
+                      <Phone className="h-4 w-4" />
+                      {t('callCaretaker')}
+                    </Button>
+                  </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* ... rest omitted for brevity */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Medical Details</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2 text-base text-stone-700">
+                  <div><strong>Blood Group:</strong> B+</div>
+                  <div><strong>Allergies:</strong> None recorded</div>
+                  <div><strong>Chronic Conditions:</strong> Hypertension</div>
+                  <div><strong>Primary Caregiver:</strong> Son - +91 91234 56789</div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         );
-      case "ai-helper":
+case "ai-helper":
         return <EnhancedAIChat />;
       case "panic":
         return (
