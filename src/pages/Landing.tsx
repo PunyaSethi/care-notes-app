@@ -19,13 +19,13 @@ const Landing = () => {
         <div className="text-center mb-16 relative">
           <div className="mb-10">
             <h1 className="text-5xl md:text-6xl font-extrabold text-[#E5A500] mb-4 drop-shadow-lg">
-              CareConnect
+              SewaConnect
             </h1>
             <p className="text-2xl md:text-3xl font-bold text-[#E5A500] mb-2">
               Simple steps lead to compounding results
             </p>
             <p className="text-lg text-[#3C3C3C] max-w-3xl mx-auto opacity-90 leading-relaxed">
-              CareConnect is a dedicated platform designed to help senior citizens and their caretakers
+              SewaConnect is a dedicated platform designed to help senior citizens and their caretakers
               collaborate seamlessly. Manage medications, track symptoms, and ensure well-being with
               a user-friendly and intuitive interface.
             </p>
