@@ -1,32 +1,27 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from "react";
 
-// --- Language Context and Provider ---
-type Language = 'en' | 'hi';
+// List all languages
+type Language = "en" | "hi" | "ta" | "te" | "bn" | "mr";
 
 interface LanguageContextType {
   language: Language;
-  toggleLanguage: () => void;
+  setLanguage: (lang: Language) => void;
   t: (key: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-const translations = {
+const translations: Record<Language, Record<string, string>> = {
   en: {
-    // New translations added for the blood pressure card
     timeToCheck: "It's time to Check Your",
     bloodPressure: "Blood Pressure",
     yesterdaysReading: "Yesterday's Reading: 140 mg/dl",
     remindMeLater: "Remind me later",
-    
-    // Header
     home: "Home",
     symptoms: "Symptoms",
     aiHelper: "AI Helper",
     profile: "Profile",
     panic: "Panic",
-    
-    // Home
     greeting: "Good Day!",
     subtitle: "Health is Wealth",
     addNewMedication: "Add New Medication",
@@ -34,8 +29,6 @@ const translations = {
     noMedicationsYet: "No medications added yet",
     needHelp: "Need Help?",
     callCaretaker: "Call your caretaker for assistance",
-    
-    // Medication Form
     addNewMedicationTitle: "Add New Medication",
     medicationName: "Medication Name",
     medicationNamePlaceholder: "e.g., Aspirin, Combiflam",
@@ -49,8 +42,6 @@ const translations = {
     addMedication: "Add Medication",
     cancel: "Cancel",
     taken: "Taken",
-    
-    // Symptoms
     dailyWellnessTracker: "Daily Wellness Tracker",
     todaysVitals: "Today's Vitals",
     temperature: "Temperature",
@@ -63,8 +54,6 @@ const translations = {
     tulsiTea: "Tulsi Tea: Twice daily for wellness",
     recordTemperature: "Record Temperature",
     logBP: "Log BP",
-    
-    // Profile
     personalInfo: "Personal Information",
     phone: "Phone",
     address: "Address",
@@ -77,37 +66,27 @@ const translations = {
     changePhoto: "Change Photo",
     emergencyInfo: "Emergency Info",
     editProfile: "Edit Profile",
-    
-    // AI Helper
     aiHealthAssistant: "AI Health Assistant",
     askAnything: "Ask me anything about your health, medications, or wellness tips!",
     typeMessage: "Type your health question...",
     send: "Send",
     thinking: "Thinking...",
-    
-    // Emergency
     emergencyPanicButton: "Emergency Panic Button",
     emergencyHelp: "Emergency Help",
-
-    // Misc
     patientDetails: "Patient Details",
-    close: "Close"
+    close: "Close",
+    selectLanguage: "Select Language"
   },
   hi: {
-    // New translations added for the blood pressure card
     timeToCheck: "अपनी जाँच का समय हो गया है",
     bloodPressure: "रक्तचाप",
     yesterdaysReading: "कल की रीडिंग: 140 mg/dl",
     remindMeLater: "मुझे बाद में याद दिलाएं",
-    
-    // Header
     home: "होम",
     symptoms: "लक्षण",
     aiHelper: "AI सहायक",
     profile: "प्रोफ़ाइल",
     panic: "आपातकाल",
-    
-    // Home
     greeting: "नमस्ते!",
     subtitle: "स्वास्थ्य ही धन है",
     addNewMedication: "नई दवा जोड़ें",
@@ -115,8 +94,6 @@ const translations = {
     noMedicationsYet: "अभी तक कोई दवा नहीं मिली",
     needHelp: "सहायता चाहिए?",
     callCaretaker: "सहायता के लिए अपने देखभालकर्ता को कॉल करें",
-    
-    // Medication Form
     addNewMedicationTitle: "नई दवा जोड़ें",
     medicationName: "दवा का नाम",
     medicationNamePlaceholder: "जैसे, एस्प्रिन, कॉम्बिफ्लाम",
@@ -130,8 +107,6 @@ const translations = {
     addMedication: "दवा जोड़ें",
     cancel: "रद्द करें",
     taken: "लिया गया",
-    
-    // Symptoms
     dailyWellnessTracker: "दैनिक स्वास्थ्य ट्रैकर",
     todaysVitals: "आज के महत्वपूर्ण संकेत",
     temperature: "तापमान",
@@ -144,8 +119,6 @@ const translations = {
     tulsiTea: "तुलसी चाय: स्वास्थ्य के लिए दिन में दो बार",
     recordTemperature: "तापमान रिकॉर्ड करें",
     logBP: "BP लॉग करें",
-    
-    // Profile
     personalInfo: "व्यक्तिगत जानकारी",
     phone: "फोन",
     address: "पता",
@@ -158,37 +131,289 @@ const translations = {
     changePhoto: "फोटो बदलें",
     emergencyInfo: "आपातकालीन जानकारी",
     editProfile: "प्रोफ़ाइल संपादित करें",
-    
-    // AI Helper
     aiHealthAssistant: "AI स्वास्थ्य सहायक",
     askAnything: "अपने स्वास्थ्य, दवाओं या कल्याण युक्तियों के बारे में मुझसे कुछ भी पूछें!",
     typeMessage: "अपना स्वास्थ्य प्रश्न टाइप करें...",
     send: "भेजें",
     thinking: "सोच रहा हूँ...",
-    
-    // Emergency
     emergencyPanicButton: "आपातकालीन पैनिक बटन",
     emergencyHelp: "आपातकालीन सहायता",
-
-    // Misc
     patientDetails: "रोगी विवरण",
-    close: "बंद करें"
+    close: "बंद करें",
+    selectLanguage: "भाषा चुनें"
+  },
+  ta: {
+    timeToCheck: "உங்களது பரிசோதனை நேரம்",
+    bloodPressure: "இரத்த அழுத்தம்",
+    yesterdaysReading: "நேற்றைய பதிவுகள்: 140 mg/dl",
+    remindMeLater: "பிறகு நினைவூட்டவும்",
+    home: "முகப்பு",
+    symptoms: "அறிகுறிகள்",
+    aiHelper: "AI உதவியாளர்",
+    profile: "சுயவிவரம்",
+    panic: "அவசரம்",
+    greeting: "நல்வாழ்த்து!",
+    subtitle: "நலம் தான் செல்வம்",
+    addNewMedication: "புதிய மருந்தை சேர்க்கவும்",
+    todaysMedications: "இன்றைய மருந்துகள்",
+    noMedicationsYet: "மருந்துகள் இதுவரை சேர்க்கப்படவில்லை",
+    needHelp: "உதவி வேண்டுகிறீர்களா?",
+    callCaretaker: "உதவிக்கு பராமரிப்பாளரை அழையுங்கள்",
+    addNewMedicationTitle: "புதிய மருந்தை சேர்க்க",
+    medicationName: "மருந்துப் பெயர்",
+    medicationNamePlaceholder: "உிதா, அஸ்பிரின், கொம்பிஃப்ளாம்",
+    dosage: "குறைவு",
+    dosagePlaceholder: "உிதா, 500mg, 1 மாதிரி",
+    frequency: "அடிக்கடி",
+    frequencyPlaceholder: "ஒன்றும் நாள், இரண்டும் நாள்",
+    reminderTime: "நினைவூட்டும் நேரம்",
+    instructions: "வழிமுறைகள் (விரும்பினால்)",
+    instructionsPlaceholder: "உிதா, உணவுடன் எடுக்க",
+    addMedication: "மருந்தை சேர்",
+    cancel: "ரத்து செய்",
+    taken: "எடுக்கப்பட்டது",
+    dailyWellnessTracker: "தினசரி நலம் கண்காணிப்பு",
+    todaysVitals: "இன்றைய முக்கிய அளவீடுகள்",
+    temperature: "வெப்பநிலை",
+    heartRate: "இதய துடிப்பு",
+    normal: "இயல்பு",
+    warning: "எச்சரிக்கை",
+    ayurvedicTips: "ஆயுர்வேதக் குறிப்புகள்",
+    turmericMilk: "மஞ்சள் பால்: இரவில் தூங்குவதற்கு முன்பு",
+    pranayama: "பிராணாயாமா: காலை 10 நிமிடம்",
+    tulsiTea: "துளசி டீ: தினம் இருமுறை நலம்",
+    recordTemperature: "வெப்பநிலை பதிவுசெய்யவும்",
+    logBP: "BP பதிவு செய்யவும்",
+    personalInfo: "தனிப்பட்ட தகவல்",
+    phone: "தொலைபேசி",
+    address: "முகவரி",
+    healthSummary: "நலம் சுருக்கம்",
+    daysMedCompliant: "மருந்து கடைபிடித்த நாட்கள்",
+    activeMedications: "செயலில் உள்ள மருந்துகள்",
+    familyContacts: "குடும்பத் தொடர்புகள்",
+    primaryCaretaker: "முதன்மை பராமரிப்பாளர்",
+    familyDoctor: "குடும்ப மருத்துவர்",
+    changePhoto: "படத்தை மாற்றவும்",
+    emergencyInfo: "அவசர தகவல்",
+    editProfile: "சுயவிவரம் திருத்த",
+    aiHealthAssistant: "AI நலத்துறை உதவியாளர்",
+    askAnything: "உங்கள் நலம், மருந்துகள், ஆலோசனைகள் பற்றி என்னிடம் கேளுங்கள்!",
+    typeMessage: "உங்கள் நலத்துறை கேள்வியை டைப் செய்யவும்...",
+    send: "அனுப்பு",
+    thinking: "யோசிக்கப்படுகின்றது...",
+    emergencyPanicButton: "அவசர பானிக் பட்டன்",
+    emergencyHelp: "அவசர உதவி",
+    patientDetails: "நோயாளர் விவரங்கள்",
+    close: "மூடு",
+    selectLanguage: "மொழியை தேர்வுசெய்யவும்"
+  },
+  te: {
+    // Sample translation stub
+    timeToCheck: "మీ పరీక్షా సమయం వచ్చింది",
+    bloodPressure: "రక్తపోటు",
+    yesterdaysReading: "నిన్నటి చదవు: 140 mg/dl",
+    remindMeLater: "తరువాత గుర్తు చేయండి",
+    home: "హోమ్",
+    symptoms: "లక్షణాలు",
+    aiHelper: "AI సహాయకుడు",
+    profile: "ప్రొఫైల్",
+    panic: "అత్యవసరం",
+    greeting: "శుభోదయం!",
+    subtitle: "ఆరోగ్యమే ధనం",
+    addNewMedication: "కొత్త ఔషధాన్ని జతచేయండి",
+    todaysMedications: "ఈరోజు ఔషధాలు",
+    noMedicationsYet: "ఇప్పటి వరకు ఔషధాలు లేవు",
+    needHelp: "సహాయం కావాలా?",
+    callCaretaker: "సహాయం కోసం సంరక్షకుడిని పిలవండి",
+    addNewMedicationTitle: "కొత్త ఔషధాన్ని జతచేయండి",
+    medicationName: "ఔషధం పేరు",
+    medicationNamePlaceholder: "ఉదా: ఆస్పిరిన్, కొంబిఫ్లామ్",
+    dosage: "మోతాదు",
+    dosagePlaceholder: "ఉదా: 500 mg, 1 మాత్ర",
+    frequency: "ఫ్రీక్వెన్సీ",
+    frequencyPlaceholder: "ఉదా: రోజుకి ఒకసారి, రోజుకి రెండుసార్లు",
+    reminderTime: "రిమైండర్ టైమ్",
+    instructions: "దర్శనాలు (ఐచ్ఛికం)",
+    instructionsPlaceholder: "ఉదా: ఆహారం తో తీసుకోండి",
+    addMedication: "ఔషధాన్ని జతచేయండి",
+    cancel: "రద్దు",
+    taken: "తీసుకున్నారు",
+    dailyWellnessTracker: "దినసరి ఆరోగ్య అనుసరణ",
+    todaysVitals: "ఈరోజు ముఖ్య కొలబడే అంశాలు",
+    temperature: "ఉష్ణోగ్రత",
+    heartRate: "హృదయ వేగం",
+    normal: "సాధారణం",
+    warning: "హెచ్చరిక",
+    ayurvedicTips: "ఆయుర్వేద సూచనలు",
+    turmericMilk: "పసుపు పెరుగు: immunity కోసం ప్రతిరోజూ పడుకోబోయే ముందు",
+    pranayama: "ప్రాణాయామం: ఉదయం 10 నిమిషాలు",
+    tulsiTea: "తులసి టీ: ఆరోగ్యానికి ప్రతిరోజూ రెండుసార్లు",
+    recordTemperature: "ఉష్ణోగ్రతను రికార్డ్ చేయండి",
+    logBP: "BP లాగ్ చేయండి",
+    personalInfo: "పర్సనల్ సమాచారం",
+    phone: "ఫోన్",
+    address: "చిరునామా",
+    healthSummary: "ఆరోగ్య సారాంశం",
+    daysMedCompliant: "మందులు తీసుకున్న రోజుల సంఖ్య",
+    activeMedications: "క్రియాశీల మందులు",
+    familyContacts: "కుటుంబ సంప్రదింపులు",
+    primaryCaretaker: "ప్రధాన సంరక్షకుడు",
+    familyDoctor: "కుటుంబ డాక్టర్",
+    changePhoto: "ఫోటో మార్చండి",
+    emergencyInfo: "అత్యవసర సమాచారం",
+    editProfile: "ప్రొఫైల్ మార్చండి",
+    aiHealthAssistant: "AI ఆరోగ్య సహాయుడు",
+    askAnything: "మీ ఆరోగ్య, మందులు లేదా ఆరోగ్య మార్గదర్శకాలను నేనడగండి!",
+    typeMessage: "మీ ఆరోగ్య ప్రశ్నను టైప్ చేయండి...",
+    send: "పంపండి",
+    thinking: "ఆలోచిస్తుంది...",
+    emergencyPanicButton: "అత్యవసర పానిక్ బటన్",
+    emergencyHelp: "అత్యవసర సహాయం",
+    patientDetails: "పేషెంట్ వివరాలు",
+    close: "క్లోజ్",
+    selectLanguage: "భాషను ఎంచుకోండి"
+  },
+  bn: {
+    timeToCheck: "আপনার চেক করার সময় হয়েছে",
+    bloodPressure: "রক্তচাপ",
+    yesterdaysReading: "গতকালের রিডিং: 140 mg/dl",
+    remindMeLater: "পরে মনে করিয়ে দিন",
+    home: "বাড়ি",
+    symptoms: "উপসর্গ",
+    aiHelper: "এআই সহায়ক",
+    profile: "প্রোফাইল",
+    panic: "জরুরি",
+    greeting: "শুভ দিন!",
+    subtitle: "স্বাস্থ্যই সম্পদ",
+    addNewMedication: "নতুন ওষুধ যোগ করুন",
+    todaysMedications: "আজকের ওষুধগুলো",
+    noMedicationsYet: "এখনও কোনো ওষুধ যোগ করা হয়নি",
+    needHelp: "সাহায্য প্রয়োজন?",
+    callCaretaker: "সাহায্যের জন্য আপনার পরিচর্যাকারীকে কল করুন",
+    addNewMedicationTitle: "নতুন ওষুধ যোগ করুন",
+    medicationName: "ওষুধের নাম",
+    medicationNamePlaceholder: "যেমন, অ্যাসপিরিন, কম্বিফ্লাম",
+    dosage: "ডোজ",
+    dosagePlaceholder: "যেমন, 500 mg, 1 ট্যাবলেট",
+    frequency: "ফ্রিকোয়েন্সি",
+    frequencyPlaceholder: "যেমন, দিনে একবার, দিনে দুবার",
+    reminderTime: "রিমাইন্ডার টাইম",
+    instructions: "নির্দেশনা (ঐচ্ছিক)",
+    instructionsPlaceholder: "যেমন, খাবারের সাথে নিন",
+    addMedication: "ওষুধ যোগ করুন",
+    cancel: "বাতিল করুন",
+    taken: "নেয়া হয়েছে",
+    dailyWellnessTracker: "দৈনিক সুস্থতার ট্র্যাকার",
+    todaysVitals: "আজকের গুরুত্বপূর্ণ",
+    temperature: "তাপমাত্রা",
+    heartRate: "হৃদস্পন্দন",
+    normal: "স্বাভাবিক",
+    warning: "সতর্কতা",
+    ayurvedicTips: "আয়ুর্বেদিক টিপস",
+    turmericMilk: "হলুদের দুধ: ইমিউনিটির জন্য প্রতিদিন রাতে",
+    pranayama: "প্রাণায়াম: সকালে ১০ মিনিট",
+    tulsiTea: "তুলসি চা: সুস্থতার জন্য দিনে দুবার",
+    recordTemperature: "তাপমাত্রা রেকর্ড করুন",
+    logBP: "BP লগ করুন",
+    personalInfo: "ব্যক্তিগত তথ্য",
+    phone: "ফোন",
+    address: "ঠিকানা",
+    healthSummary: "স্বাস্থ্য সংক্ষিপ্তসার",
+    daysMedCompliant: "ওষুধ নেওয়ার দিনসমূহ",
+    activeMedications: "সক্রিয় ওষুধ",
+    familyContacts: "পরিবারের যোগাযোগ",
+    primaryCaretaker: "প্রধান পরিচর্যাকারী",
+    familyDoctor: "পরিবারের ডাক্তার",
+    changePhoto: "ছবি পরিবর্তন করুন",
+    emergencyInfo: "জরুরি তথ্য",
+    editProfile: "প্রোফাইল সম্পাদনা করুন",
+    aiHealthAssistant: "AI স্বাস্থ্য সহায়ক",
+    askAnything: "আপনার স্বাস্থ্য, ওষুধ বা সুস্থতার টিপস সম্পর্কে কিছু জিজ্ঞাসা করুন!",
+    typeMessage: "আপনার স্বাস্থ্য প্রশ্ন লিখুন...",
+    send: "পাঠান",
+    thinking: "চিন্তা করা হচ্ছে...",
+    emergencyPanicButton: "জরুরি প্যানিক বাটন",
+    emergencyHelp: "জরুরি সহায়তা",
+    patientDetails: "রোগীর তথ্য",
+    close: "বন্ধ করুন",
+    selectLanguage: "ভাষা নির্বাচন করুন"
+  },
+  mr: {
+    timeToCheck: "तुमची तपासणीची वेळ झाली आहे",
+    bloodPressure: "रक्तदाब",
+    yesterdaysReading: "कालची वाचन: 140 mg/dl",
+    remindMeLater: "नंतर आठवण करून द्या",
+    home: "मुख्यपृष्ठ",
+    symptoms: "लक्षणे",
+    aiHelper: "AI सहाय्यक",
+    profile: "प्रोफाईल",
+    panic: "तातडी",
+    greeting: "शुभ दिन!",
+    subtitle: "आरोग्य म्हणजेच संपत्ती",
+    addNewMedication: "नवीन औषध जोडा",
+    todaysMedications: "आजची औषधे",
+    noMedicationsYet: "आत्तापर्यंत औषधे नाहीत",
+    needHelp: "मदत हवी आहे?",
+    callCaretaker: "मदतीसाठी आपल्या सहाय्यकाला कॉल करा",
+    addNewMedicationTitle: "नवीन औषध जोडा",
+    medicationName: "औषधाचे नाव",
+    medicationNamePlaceholder: "उदा. एस्पिरिन, कॉम्बिफ्लाम",
+    dosage: "मात्रा",
+    dosagePlaceholder: "उदा. 500 mg, 1 गोळी",
+    frequency: "वारंवारिता",
+    frequencyPlaceholder: "उदा. दिवसांतून एकदा, दिवसांतून दोनदा",
+    reminderTime: "आठवणीचा वेळ",
+    instructions: "सूचना (ऐच्छिक)",
+    instructionsPlaceholder: "उदा. जेवणासोबत घेणे",
+    addMedication: "औषध जोडा",
+    cancel: "रद्द करा",
+    taken: "घेतले",
+    dailyWellnessTracker: "दैनिक निसर्ग ट्रॅकर",
+    todaysVitals: "आजचे महत्वाचे",
+    temperature: "तापमान",
+    heartRate: "हृदय गती",
+    normal: "सामान्य",
+    warning: "इशारा",
+    ayurvedicTips: "आयुर्वेदिक टीप्स",
+    turmericMilk: "हळदीचे दूध: रोगप्रतिकारासाठी रात्री",
+    pranayama: "प्राणायाम: सकाळी १० मिनिटे",
+    tulsiTea: "तुळशी चहा: दिवसातून दोनदा",
+    recordTemperature: "तापमान नोंदवा",
+    logBP: "BP लॉग करा",
+    personalInfo: "वैयक्तिक माहिती",
+    phone: "फोन",
+    address: "पत्ता",
+    healthSummary: "आरोग्य संक्षिप्त",
+    daysMedCompliant: "औषधाचे पालन केलेले दिवस",
+    activeMedications: "सक्रिय औषधे",
+    familyContacts: "कुटुंब संपर्क",
+    primaryCaretaker: "मुख्य सहाय्यक",
+    familyDoctor: "कुटुंब डॉक्टर",
+    changePhoto: "फोटो बदला",
+    emergencyInfo: "तातडी माहिती",
+    editProfile: "प्रोफाईल संपादित करा",
+    aiHealthAssistant: "AI आरोग्य सहाय्यक",
+    askAnything: "आपल्या आरोग्य, औषधे किंवा टीप्स बद्दल मला विचारा!",
+    typeMessage: "आपला आरोग्य प्रश्न टाइप करा...",
+    send: "पाठवा",
+    thinking: "विचार करत आहे...",
+    emergencyPanicButton: "तातडी पॅनिक बटन",
+    emergencyHelp: "तातडी सहाय्य",
+    patientDetails: "रुग्णाची माहिती",
+    close: "बंद करा",
+    selectLanguage: "भाषा निवडा"
   }
 };
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('en');
-
-  const toggleLanguage = () => {
-    setLanguage(prev => prev === 'en' ? 'hi' : 'en');
-  };
+  const [language, setLanguage] = useState<Language>("en");
 
   const t = (key: string): string => {
-    return (translations[language] as any)[key] || key;
+    return translations[language][key] || key;
   };
 
   return (
-    <LanguageContext.Provider value={{ language, toggleLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );
@@ -197,21 +422,9 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
   if (context === undefined) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
+    throw new Error("useLanguage must be used within a LanguageProvider");
   }
   return context;
 };
 
-// If you want a small in-file demo, wrap usage with LanguageProvider like this:
-/*
-import React from 'react';
-export function DemoApp() {
-  return (
-    <LanguageProvider>
-      <YourAppHere />
-    </LanguageProvider>
-  );
-}
-*/
-
-export default LanguageProvider
+export default LanguageProvider;
