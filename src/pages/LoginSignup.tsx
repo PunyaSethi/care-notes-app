@@ -120,9 +120,9 @@ const LoginSignup = () => {
           <div className="w-20 h-20 bg-gradient-to-br from-red-500 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
             <span className="text-3xl text-white">🏥</span>
           </div>
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">CareConnect</h1>
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">SewaConnect</h1>
           <p className="text-gray-600">
-            {isLogin ? 'Welcome back to your health companion' : 'Join CareConnect for better health management'}
+            {isLogin ? 'Welcome back to your health companion' : 'Join SewaConnect for better health management'}
           </p>
         </div>
 
