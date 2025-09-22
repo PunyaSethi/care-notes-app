@@ -32,9 +32,9 @@ const PatientDashboard = () => {
   const [showMedicationForm, setShowMedicationForm] = useState(false);
 
   const [symptoms, setSymptoms] = useState([
-    { id: 1, name: "Blood Pressure", value: "120/80", status: "normal", icon: Heart, color: "text-green-600" },
-    { id: 2, name: "Temperature", value: "98.6°F", status: "normal", icon: Thermometer, color: "text-blue-600" },
-    { id: 3, name: "Heart Rate", value: "72 BPM", status: "normal", icon: Activity, color: "text-green-600" }
+    { id: 1, name: "Blood Pressure", value: "120/80", status: "normal", icon: Heart, color: "text-emerald-600" },
+    { id: 2, name: "Temperature", value: "98.6°F", status: "normal", icon: Thermometer, color: "text-teal-600" },
+    { id: 3, name: "Heart Rate", value: "72 BPM", status: "normal", icon: Activity, color: "text-emerald-600" }
   ]);
 
   const { toast } = useToast();
@@ -390,9 +390,9 @@ const PatientDashboard = () => {
                       </div>
                       {med.time && (
                         <div className={`text-xs px-3 py-1 rounded-full mb-3 font-medium ${
-                          getMedicationStatus(med.time) === 'urgent' ? 'bg-red-100 text-red-800' :
-                          getMedicationStatus(med.time) === 'soon' ? 'bg-yellow-100 text-yellow-800' :
-                          'bg-green-100 text-green-800'
+                          getMedicationStatus(med.time) === 'urgent' ? 'bg-rose-100 text-rose-800' :
+                          getMedicationStatus(med.time) === 'soon' ? 'bg-amber-100 text-amber-800' :
+                          'bg-emerald-100 text-emerald-800'
                         }`}>
                           {calculateTimeUntilDose(med.time)}
                         </div>
@@ -404,7 +404,7 @@ const PatientDashboard = () => {
                         >
                           ✓ {t('taken')}
                         </Button>
-                        <Button size="sm" variant="ghost" onClick={() => removeMedication(med.id)} className="text-red-600">
+                        <Button size="sm" variant="ghost" onClick={() => removeMedication(med.id)} className="text-rose-600">
                           <Trash className="h-4 w-4" />
                         </Button>
                       </div>
@@ -417,23 +417,23 @@ const PatientDashboard = () => {
         </CardContent>
       </Card>
 
-      <div className="bg-gradient-to-br from-rose-200 to-blue-200 p-6 rounded-2xl text-gray-800 relative overflow-hidden">
+      <div className="bg-gradient-to-br from-rose-200 to-teal-200 p-6 rounded-2xl text-stone-700 relative overflow-hidden">
         <div className="relative z-10">
           <div className="flex items-center justify-between mb-4">
             <div>
               <h1 className="text-2xl font-bold mb-1">{t('greeting')}</h1>
-              <p className="text-gray-700 text-lg">{t('subtitle')}</p>
+              <p className="text-stone-600 text-lg">{t('subtitle')}</p>
             </div>
             <div className="text-4xl">🙏</div>
           </div>
           <div className="mt-6">
-            <p className="text-gray-700 text-sm mb-3">It's time to Check Your</p>
+            <p className="text-stone-600 text-sm mb-3">It's time to Check Your</p>
             <p className="text-xl font-semibold">Blood Pressure</p>
-            <p className="text-sm text-gray-600 mt-1">Yesterday's Reading: 140 mg/dl</p>
+            <p className="text-sm text-stone-500 mt-1">Yesterday's Reading: 140 mg/dl</p>
             <div className="flex gap-3 mt-4">
               <Button
                 variant="ghost"
-                className="text-gray-800 border border-gray-400 px-6 py-2 rounded-full hover:bg-gray-100"
+                className="text-stone-700 border border-stone-300 px-6 py-2 rounded-full hover:bg-stone-50"
                 onClick={() => {
                   toast({
                     title: "Blood Pressure Check",
@@ -450,11 +450,11 @@ const PatientDashboard = () => {
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/20 rounded-full -ml-12 -mb-12"></div>
       </div>
 
-      <Card className="bg-gradient-to-br from-yellow-100 to-yellow-50 border-yellow-200 cursor-pointer hover:shadow-lg transition-all" onClick={requestCaretakerHelp}>
+      <Card className="bg-gradient-to-br from-amber-100 to-amber-50 border-amber-200 cursor-pointer hover:shadow-lg transition-all" onClick={requestCaretakerHelp}>
         <CardContent className="p-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <div className="w-14 h-14 bg-gradient-to-br from-yellow-200 to-orange-200 rounded-2xl flex items-center justify-center mr-4 shadow-sm">
+              <div className="w-14 h-14 bg-gradient-to-br from-amber-200 to-orange-200 rounded-2xl flex items-center justify-center mr-4 shadow-sm">
                 <span className="text-2xl">🤝</span>
               </div>
               <div>
@@ -462,7 +462,7 @@ const PatientDashboard = () => {
                 <p className="text-sm text-muted-foreground">{t('callCaretaker')}</p>
               </div>
             </div>
-            <Button variant="ghost" size="icon" className="h-10 w-10 text-yellow-500">
+            <Button variant="ghost" size="icon" className="h-10 w-10 text-amber-500">
               <Phone className="h-6 w-6" />
             </Button>
           </div>
@@ -489,7 +489,7 @@ const PatientDashboard = () => {
       <Card>
         <CardHeader>
           <CardTitle className="text-lg flex items-center gap-2">
-            <Activity className="h-5 w-5 text-blue-600" />
+            <Activity className="h-5 w-5 text-teal-600" />
             {t('todaysVitals')}
           </CardTitle>
         </CardHeader>
@@ -498,7 +498,7 @@ const PatientDashboard = () => {
             {symptoms.map((symptom) => {
               const Icon = symptom.icon;
               return (
-                <div key={symptom.id} className="flex items-center justify-between p-3 bg-gray-100 rounded-lg">
+                <div key={symptom.id} className="flex items-center justify-between p-3 bg-stone-50 rounded-lg">
                   <div className="flex items-center gap-3">
                     <Icon className={`h-6 w-6 ${symptom.color}`} />
                     <div>
@@ -534,7 +534,7 @@ const PatientDashboard = () => {
                     type="button"
                     onClick={() => setNewSymptom({ ...newSymptom, name: s })}
                     className={`text-left p-3 rounded-lg border ${
-                      newSymptom.name === s ? "border-teal-600 bg-teal-50" : "border-gray-200 bg-white"
+                      newSymptom.name === s ? "border-teal-600 bg-teal-50" : "border-stone-100 bg-white"
                     }`}
                   >
                     <div className="font-medium">{s}</div>
@@ -564,11 +564,11 @@ const PatientDashboard = () => {
                     className={`flex-1 p-3 rounded-lg border font-medium ${
                       newSymptom.severity === level
                         ? level === "mild"
-                          ? "bg-green-50 border-green-400"
+                          ? "bg-emerald-50 border-emerald-400"
                           : level === "moderate"
-                          ? "bg-yellow-50 border-yellow-400"
-                          : "bg-red-50 border-red-400"
-                        : "bg-white border-gray-200"
+                          ? "bg-amber-50 border-amber-400"
+                          : "bg-rose-50 border-rose-400"
+                        : "bg-white border-stone-100"
                     }`}
                   >
                     {level.charAt(0).toUpperCase() + level.slice(1)}
@@ -609,32 +609,32 @@ const PatientDashboard = () => {
                     <div className="flex items-center justify-between">
                       <div>
                         <div className="font-medium text-base">{s.name}</div>
-                        <div className="text-xs text-gray-500">{new Date(s.time).toLocaleString()}</div>
+                        <div className="text-xs text-stone-400">{new Date(s.time).toLocaleString()}</div>
                       </div>
                       <div className="ml-3">
                         <Badge
                           className={`px-3 py-1 text-sm ${
                             s.severity === "mild"
-                              ? "bg-green-100 text-green-700"
+                              ? "bg-emerald-100 text-emerald-700"
                               : s.severity === "moderate"
-                              ? "bg-yellow-100 text-yellow-700"
-                              : "bg-red-100 text-red-700"
+                              ? "bg-amber-100 text-amber-700"
+                              : "bg-rose-100 text-rose-700"
                           }`}
                         >
                           {s.severity.charAt(0).toUpperCase() + s.severity.slice(1)}
                         </Badge>
                       </div>
                     </div>
-                    {s.notes && <p className="mt-2 text-sm text-gray-700">{s.notes}</p>}
+                    {s.notes && <p className="mt-2 text-sm text-stone-600">{s.notes}</p>}
                   </div>
 
                   <div className="flex flex-col items-end gap-2">
                     <button
                       onClick={() => removeLoggedSymptom(s.id)}
-                      className="p-2 rounded-full hover:bg-gray-100"
+                      className="p-2 rounded-full hover:bg-stone-50"
                       aria-label="Delete symptom"
                     >
-                      <Trash className="h-4 w-4 text-gray-600" />
+                      <Trash className="h-4 w-4 text-stone-500" />
                     </button>
                   </div>
                 </div>
@@ -657,13 +657,13 @@ const PatientDashboard = () => {
             />
           </div>
           <div className="space-y-3">
-            <div className="p-3 bg-blue-100 rounded-lg">
+            <div className="p-3 bg-teal-100 rounded-lg">
               <p className="text-sm">🌿 <strong>{t('turmericMilk')}</strong></p>
             </div>
-            <div className="p-3 bg-blue-100 rounded-lg">
+            <div className="p-3 bg-teal-100 rounded-lg">
               <p className="text-sm">🧘 <strong>{t('pranayama')}</strong></p>
             </div>
-            <div className="p-3 bg-blue-100 rounded-lg">
+            <div className="p-3 bg-teal-100 rounded-lg">
               <p className="text-sm">☕ <strong>{t('tulsiTea')}</strong></p>
             </div>
           </div>
@@ -683,49 +683,6 @@ const PatientDashboard = () => {
     </div>
   );
 
-  const renderProfileContent = () => {
-    return (
-      <div className="space-y-4 pb-[80px]">
-        <Card>
-          <CardContent className="p-0">
-            <div className="relative h-32 rounded-t-lg overflow-hidden">
-              <img src={familyProfile} alt="Family Profile" className="w-full h-full object-cover" />
-            </div>
-            <div className="p-6 -mt-8 relative">
-              <div className="w-16 h-16 bg-teal-600 rounded-full flex items-center justify-center mb-4 border-4 border-gray-200">
-                <User className="h-8 w-8 text-white" />
-              </div>
-              <h2 className="text-xl font-bold mb-1">Raj Kumar Sharma</h2>
-              <p className="text-gray-500">Age: 68 • Patient ID: #12345</p>
-              <Button size="sm" className="mt-3">
-                <Edit className="h-4 w-4 mr-2" />
-                {t('editProfile')}
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  };
-
-  const renderPanicContent = () => {
-    return (
-      <div className="space-y-4">
-        <Card className="border-red-400">
-          <CardHeader>
-            <CardTitle className="text-xl text-red-500">Emergency Panic Button</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Button className="w-full bg-red-400 text-white btn-elderly">
-              <AlertTriangle className="h-6 w-6 mr-2" />
-              Emergency Help
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  };
-
   const renderContent = () => {
     switch (activeTab) {
       case "home":
@@ -735,9 +692,146 @@ const PatientDashboard = () => {
       case "ai-helper":
         return <EnhancedAIChat />;
       case "profile":
-        return renderProfileContent();
+        return (
+          <div className="space-y-4 pb-[80px]">
+            <Card>
+              <CardContent className="p-0">
+                <div className="relative h-32 rounded-t-lg overflow-hidden">
+                  <img
+                    src={familyProfile}
+                    alt="Family Profile"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-6 -mt-8 relative">
+                  <div className="w-16 h-16 bg-teal-600 rounded-full flex items-center justify-center mb-4 border-4 border-stone-100">
+                    <User className="h-8 w-8 text-white" />
+                  </div>
+                  <h2 className="text-xl font-bold mb-1">Raj Kumar Sharma</h2>
+                  <p className="text-stone-400">Age: 68 • Patient ID: #12345</p>
+                  <Button size="sm" className="mt-3">
+                    <Edit className="h-4 w-4 mr-2" />
+                    {t('editProfile')}
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">{t('personalInfo')}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-1 gap-4">
+                  <div className="flex items-center gap-3 p-3 bg-stone-50 rounded-lg">
+                    <Phone className="h-5 w-5 text-teal-600" />
+                    <div>
+                      <p className="text-sm text-stone-400">{t('phone')}</p>
+                      <p className="font-medium">+91 98765 43210</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 bg-stone-50 rounded-lg">
+                    <MapPin className="h-5 w-5 text-teal-600" />
+                    <div>
+                      <p className="text-sm text-stone-400">{t('address')}</p>
+                      <p className="font-medium">123 Gandhi Nagar, Delhi</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Health Summary</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="relative h-20 rounded-lg overflow-hidden mb-4">
+                  <img
+                    src={healthSymbols}
+                    alt="Health Symbols"
+                    className="w-full h-full object-cover opacity-50"
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="text-center p-3 bg-emerald-100 rounded-lg">
+                    <p className="text-2xl font-bold text-emerald-700">7</p>
+                    <p className="text-sm text-stone-400">Days Med Compliant</p>
+                  </div>
+                  <div className="text-center p-3 bg-teal-100 rounded-lg">
+                    <p className="text-2xl font-bold text-teal-700">5</p>
+                    <p className="text-sm text-stone-400">Active Medications</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">परिवार संपर्क (Family Contacts)</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="flex items-center justify-between p-3 bg-stone-50 rounded-lg">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-teal-600 rounded-full flex items-center justify-center">
+                      <span className="text-white font-medium">S</span>
+                    </div>
+                    <div>
+                      <p className="font-medium">Sunita Sharma (Daughter)</p>
+                      <p className="text-sm text-stone-400">Primary Caretaker</p>
+                    </div>
+                  </div>
+                  <Button size="sm" variant="outline">
+                    <Phone className="h-4 w-4" />
+                  </Button>
+                </div>
+                <div className="flex items-center justify-between p-3 bg-stone-50 rounded-lg">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center">
+                      <span className="text-stone-700 font-medium">A</span>
+                    </div>
+                    <div>
+                      <p className="font-medium">Dr. Amit Patel</p>
+                      <p className="text-sm text-stone-400">Family Doctor</p>
+                    </div>
+                  </div>
+                  <Button size="sm" variant="outline">
+                    <Phone className="h-4 w-4" />
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            <div className="grid grid-cols-2 gap-3">
+              <Button variant="outline" className="h-16 flex-col gap-1">
+                <Camera className="h-5 w-5" />
+                <span className="text-sm">Change Photo</span>
+              </Button>
+              <Button variant="outline" className="h-16 flex-col gap-1">
+                <AlertTriangle className="h-5 w-5" />
+                <span className="text-sm">Emergency Info</span>
+              </Button>
+            </div>
+          </div>
+        );
+      case "ai-helper":
+        return <EnhancedAIChat />;
       case "panic":
-        return renderPanicContent();
+        return (
+          <div className="space-y-4">
+            <Card className="border-rose-400">
+              <CardHeader>
+                <CardTitle className="text-xl text-rose-500">Emergency Panic Button</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Button className="w-full bg-rose-400 text-white btn-elderly">
+                  <AlertTriangle className="h-6 w-6 mr-2" />
+                  Emergency Help
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        );
       default:
         return renderHomeContent();
     }
@@ -754,7 +848,7 @@ const PatientDashboard = () => {
         >
           <Menu className="h-6 w-6" />
         </Button>
-        <h1 className="text-xl font-bold text-gray-800">
+        <h1 className="text-xl font-bold text-stone-700">
           {t(activeTab === "home" ? "home" :
             activeTab === "symptoms" ? "symptoms" :
               activeTab === "ai-helper" ? "aiHelper" :
@@ -768,7 +862,7 @@ const PatientDashboard = () => {
       <div className="p-4">
         {/* Demo controls */}
         <div className="flex items-center justify-between mb-4">
-          <div className="text-sm px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full font-medium">
+          <div className="text-sm px-3 py-1 bg-amber-100 text-amber-800 rounded-full font-medium">
             Demo Mode — Local/Server
           </div>
 
@@ -779,7 +873,7 @@ const PatientDashboard = () => {
             <Button size="sm" onClick={exportMedicationsCSV} variant="outline">
               Export Meds
             </Button>
-            <Button size="sm" onClick={clearLocalData} className="bg-red-600 text-white">
+            <Button size="sm" onClick={clearLocalData} className="bg-rose-600 text-white">
               Clear Saved Data
             </Button>
           </div>
@@ -787,7 +881,7 @@ const PatientDashboard = () => {
 
         {/* Undo banner */}
         {lastDeletedSymptom && (
-          <div className="fixed left-1/2 -translate-x-1/2 bottom-20 z-50 w-[90%] max-w-xl p-3 bg-gray-800 text-white rounded-lg shadow-lg flex items-center justify-between">
+          <div className="fixed left-1/2 -translate-x-1/2 bottom-20 z-50 w-[90%] max-w-xl p-3 bg-stone-700 text-white rounded-lg shadow-lg flex items-center justify-between">
             <div>
               <div className="font-medium">{lastDeletedSymptom.name} removed</div>
               <div className="text-xs opacity-80">Click Undo to restore — auto clear in 8s</div>
