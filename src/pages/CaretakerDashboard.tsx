@@ -67,7 +67,7 @@ const CaretakerDashboard: React.FC = () => {
   const [patients, setPatients] = useState<Patient[]>([
     {
       id: 3,
-      patientName: "अलिस जॉनसन",
+      patientName: "Rahul Sharma",
       phone: "+91 9876543211",
       age: 72,
       lastActivity: "2 hours ago",
@@ -81,7 +81,7 @@ const CaretakerDashboard: React.FC = () => {
     },
     {
       id: 4,
-      patientName: "रॉबर्ट चेन",
+      patientName: "Abhiram Kumar",
       phone: "+91 8765432108",
       age: 68,
       lastActivity: "30 minutes ago",
@@ -95,7 +95,7 @@ const CaretakerDashboard: React.FC = () => {
     },
     {
       id: 5,
-      patientName: "मार्गरेट डेविस",
+      patientName: "Riya Goel",
       phone: "+91 7654321098",
       age: 78,
       lastActivity: "1 day ago",
@@ -110,8 +110,8 @@ const CaretakerDashboard: React.FC = () => {
   ]);
 
   const [invitations, setInvitations] = useState<Invitation[]>([
-    { id: 1, patientName: "John Doe", phone: "+91 9876543210", timestamp: "2 hours ago", age: 65 },
-    { id: 2, patientName: "Mary Smith", phone: "+91 8765432109", timestamp: "1 day ago", age: 71 },
+    { id: 1, patientName: "Manya Awasthi", phone: "+91 9876543210", timestamp: "2 hours ago", age: 65 },
+    { id: 2, patientName: "Yash Verma", phone: "+91 8765432109", timestamp: "1 day ago", age: 71 },
   ]);
 
   const getRiskLevelColor = (level: string) => {
