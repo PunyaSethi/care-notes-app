@@ -1,23 +1,24 @@
-// LanguageToggle.tsx
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-/**
- * Simple language toggle. Uses the shared LanguageContext.
- * This avoids depending on a Switch component that might not exist in all projects.
- */
-
-const LanguageToggle: React.FC = () => {
-  const { language, toggleLanguage, t } = useLanguage();
+const LanguageToggle = () => {
+  const { language, toggleLanguage } = useLanguage();
 
   return (
-    <div className="flex items-center gap-2">
-      <span className="text-sm text-slate-600 font-medium">EN</span>
-      <Button onClick={toggleLanguage} aria-label={language === 'en' ? t('Convert to Hindi') : t('Convert to English')}>
-        {language === 'en' ? 'हिन्दी' : 'EN'}
-      </Button>
-      <span className="text-sm text-slate-600 font-medium">हिं</span>
+    <div className="flex items-center space-x-2">
+      <Label htmlFor="language-toggle" className="text-sm font-medium">
+        EN
+      </Label>
+      <Switch
+        id="language-toggle"
+        checked={language === 'hi'}
+        onCheckedChange={toggleLanguage}
+        className="data-[state=checked]:bg-primary"
+      />
+      <Label htmlFor="language-toggle" className="text-sm font-medium">
+        हिं
+      </Label>
     </div>
   );
 };
